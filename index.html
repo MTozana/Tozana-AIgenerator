@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styling.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <title>AI Generator</title>
 </head>
 <body class="container">
@@ -22,12 +23,13 @@
             required
             autocomplete="off"
             class="instructions"
+            id="destination-generator-form"
           />
           <input type="submit" class="submit-button" />
         </form>
-        <div class="destination">
-         
-          <br />
+        <div class="destination"
+        id="destination"
+        id="user-instructions">
          
         </div>
       </main>
