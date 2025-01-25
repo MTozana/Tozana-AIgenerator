@@ -17,7 +17,7 @@
         <form id="destination-generator-form">
             <input
                 type="text"
-                placeholder="Enter the destination"
+                placeholder="Enter the question....."
                 autofocus
                 required
                 autocomplete="off"
@@ -50,7 +50,6 @@
         console.log("Generating destination...");
         console.log(`Requesting with prompt: ${prompt}`);
         console.log(`API URL: ${apiUrl}`);
-
         axios.get(apiUrl)
             .then(displayDestination)
             .catch((error) => {
