@@ -10,34 +10,57 @@
 <body class="container">
     <header>
         <h1>AI Holiday destination generator</h1>
-      </header>
-  <h2>
-    Find the best holiday destination including affordable activities for you and yours ✈️
-  </h2>
-      <main>
-        <form>
-          <input
-            type="text"
-            placeholder="Enter the destination"
-            autofocus
-            required
-            autocomplete="off"
-            class="instructions"
-            id="destination-generator-form"
-          />
-          <input type="submit" class="submit-button" />
+    </header>
+    <h2>Find the best holiday destination including affordable activities for you and yours ✈️</h2>
+    <main>
+        <form id="destination-generator-form">
+            <input
+                type="text"
+                placeholder="Enter the destination"
+                autofocus
+                required
+                autocomplete="off"
+                class="instructions"
+                id="destination-input"
+            />
+            <input type="submit" class="submit-button" />
         </form>
-        <div class="destination"
-        id="destination"
-        id="user-instructions">
-         
-        </div>
-      </main>
-  
-      
-      
-  
-      <script src="src/index.js"></script>
+        <div id="destination"></div>
+    </main>
+
+    <script>
+    function displayDestination(response) {
+        console.log("Response received:", response);
+
+     
+        document.getElementById("destination").innerHTML = response.data.answer;
+
+    }
+
+    function generatedestination(event) {
+        event.preventDefault();
+
+        let instructionsInput = document.querySelector("#destination-input");
+        let apiKey = "2046c535afeb092fo82f1d306d8a2b2t";
+        let context = "You are a travelling agent. Your mission is to generate holiday destinations all around the world including affordable accommodation and activities that can be done at the destination location. The destination must be provided in HTML format. do not write the html  text on the responds.";
+        let prompt = "Generate holiday destinations.";
+        let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+        console.log("Generating destination...");
+        console.log(`Requesting with prompt: ${prompt}`);
+        console.log(`API URL: ${apiUrl}`);
+
+        axios.get(apiUrl)
+            .then(displayDestination)
+            .catch((error) => {
+                console.error("Error generating destination:", error);
+            });
+    }
+
+    let destinationFormElement = document.querySelector("#destination-generator-form");
+    destinationFormElement.addEventListener("submit", generatedestination);
+    </script>
+
     <footer>
         This AI project was coded by
         <a href="
