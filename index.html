@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styling.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <title>AI Generator</title>
 </head>
 <body class="container">
@@ -25,24 +26,24 @@
             />
             <input type="submit" class="submit-button" />
         </form>
-        <div id="destination"></div>
+        <div  class="destination" id="destination"></div>
     </main>
 
     <script>
     function displayDestination(response) {
-        console.log("Response received:", response);
-
-     
-        document.getElementById("destination").innerHTML = response.data.answer;
-
+        new Typewriter("#destination", {
+            strings: [response.data.answer],
+            autoStart: true,
+            delay: 20,
+            cursor: "",
+        });
     }
-
     function generatedestination(event) {
         event.preventDefault();
 
         let instructionsInput = document.querySelector("#destination-input");
         let apiKey = "2046c535afeb092fo82f1d306d8a2b2t";
-        let context = "You are a travelling agent. Your mission is to generate holiday destinations all around the world including affordable accommodation and activities that can be done at the destination location. The destination must be provided in HTML format. do not write the html  text on the responds.";
+        let context = "You are a travelling agent. Your mission is to generate holiday destinations all around the world including affordable accommodation and activities that can be done at the destination location. The destination must be provided in HTML format. do not write the html  text on the responds.do not show html function on the response";
         let prompt = "Generate holiday destinations.";
         let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
 
